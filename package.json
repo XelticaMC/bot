@@ -1,0 +1,37 @@
+{
+   "name": "creeper-bot",
+   "version": "1.0.0",
+   "description": "A bot for Xeltica Minecraft Club server",
+   "main": "built/app.js",
+   "author": "Xeltica <xeltica@gmail.com>",
+   "license": "MIT",
+   "private": true,
+   "scripts": {
+      "tsc": "tsc",
+      "start": "node built/app.js",
+      "lint": "eslint src/index.ts",
+      "lint:fix": "eslint --fix src/index.ts",
+      "clean": "rimraf built",
+      "build": "tsc",
+      "watch": "nodemon"
+   },
+   "dependencies": {
+      "dayjs": "^1.8.36",
+      "discord.js": "^12.2.0",
+      "dotenv": "^8.2.0",
+      "linq": "^3.2.3"
+   },
+   "devDependencies": {
+      "@types/node": "^8.0.29",
+      "@typescript-eslint/eslint-plugin": "^3.7.0",
+      "@typescript-eslint/parser": "^3.7.0",
+      "eslint": "^7.5.0",
+      "eslint-config-prettier": "^6.11.0",
+      "eslint-plugin-prettier": "^3.1.4",
+      "nodemon": "^2.0.4",
+      "npm-run-all": "^4.1.5",
+      "prettier": "^2.0.5",
+      "rimraf": "^3.0.2",
+      "typescript": "^3.9.7"
+   }
+}
