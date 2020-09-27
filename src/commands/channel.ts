@@ -11,8 +11,8 @@ export default define('channel', '指定したチャンネルを情報を取得�
     try {
         const ch = id ? await cli.channels.fetch(id) : null;
         if (!(ch instanceof TextChannel)) return 'Specify the text channel.';
-            return `**${ch.name}**${ch.nsfw ? ' (NSFW)' : ''}\n${ch.topic}\n\n作成日:${ch.createdAt.toLocaleString()}`;
-    } catch(e: unknown) {
+        return `**${ch.name}**${ch.nsfw ? ' (NSFW)' : ''}\n${ch.topic}\n\n作成日:${ch.createdAt.toLocaleString()}`;
+    } catch (e: unknown) {
         console.error(e);
         if (e instanceof DiscordAPIError) {
             return '存在しないチャンネルです。';
@@ -22,4 +22,4 @@ export default define('channel', '指定したチャンネルを情報を取得�
             return '未知のエラーです。';
         }
     }
-});
+}, true);

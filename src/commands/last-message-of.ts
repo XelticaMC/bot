@@ -25,4 +25,4 @@ export default define('last-message-of', '', async (args: string[], _msg: Messag
             return '未知のエラーです。';
         }
     }
-});
+}, true);

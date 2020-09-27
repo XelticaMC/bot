@@ -5,4 +5,4 @@ export default define('whoami', 'コマンド主の情報を返します', (_arg
     const you = msg.author;
     return `${you.username} ID:${you.id}
 アカウント登録日: ${you.createdAt.toLocaleString()}`;
-});
+}, true);

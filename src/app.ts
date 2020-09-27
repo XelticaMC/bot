@@ -19,7 +19,12 @@ if (!getBotToken()) {
 }
 
 if (!getTosChannel()) {
-    console.error('SIRITORI_CHANNEL が未定義です。.env ファイルに記載してください');
+    console.error('TOS_CHANNEL が未定義です。.env ファイルに記載してください');
+    process.exit(-1);
+}
+
+if (!getTosChannel()) {
+    console.error('TOS_CHANNEL が未定義です。.env ファイルに記載してください');
     process.exit(-1);
 }
 
@@ -29,7 +34,7 @@ console.log(`loaded ${plugins.length} message handlers`);
 console.log(`loaded ${commands.length} commands`);
 console.log(`loaded ${workers.length} workers`);
 
-const cli = new Client();
+const cli = new Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
 
 cli.on('ready', async () => {
     console.log(`${cli.user?.username ?? 'NULL'} というアカウントでログインしました。`);
@@ -41,17 +46,30 @@ cli.on('ready', async () => {
 });
 
 cli.on('message', msg => {
-    plugins.forEach(plugin => {
+    Promise.all(plugins.map(async plugin => {
         if (plugin.onMessage)
-            plugin.onMessage(msg, cli);
-    });
+            await plugin.onMessage(msg, cli);
+    }));
 });
 
-cli.on('messageReactionAdd', (reaction, user) => {
-    plugins.forEach(plugin => {
-        if (plugin.onReaction)
-            plugin.onReaction(reaction, user, cli);
-    });
+cli.on('messageReactionAdd', async (reaction, user) => {
+    if (reaction.partial) {
+        await reaction.fetch();
+    }
+    await Promise.all(plugins.map(async plugin => {
+        if (plugin.onReactionAdded)
+            plugin.onReactionAdded(reaction, user, cli);
+    }));
+});
+
+cli.on('messageReactionRemove', async (reaction, user) => {
+    if (reaction.partial) {
+        await reaction.fetch();
+    }
+    await Promise.all(plugins.map(async plugin => {
+        if (plugin.onReactionRemoved)
+            plugin.onReactionRemoved(reaction, user, cli);
+    }));
 });
 
 setInterval(() => {

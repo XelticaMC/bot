@@ -3,3 +3,4 @@ built
 .env
 yarn-error.log
 .DS_Store
+save.json

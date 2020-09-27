@@ -6,6 +6,9 @@ import isAdmin from "./is-admin";
 import isServerAdmin from "./is-server-admin";
 import lastMessageOf from "./last-message-of";
 import ping from "./ping";
+import seed from "./seed";
+import updateRoleWizard from "./update-role-wizard";
+import updateTos from "./update-tos";
 import whoami from "./whoami";
 
 const commands: readonly MBCommandDefinition[] = [
@@ -17,6 +20,9 @@ const commands: readonly MBCommandDefinition[] = [
     whoami,
     channel,
     lastMessageOf,
+    updateTos,
+    updateRoleWizard,
+    seed,
 ];
 
 export const getCommand = (name: string) => commands.find(c => c.name === name);
