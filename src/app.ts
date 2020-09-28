@@ -46,6 +46,7 @@ cli.on('ready', async () => {
 });
 
 cli.on('message', msg => {
+    if (msg.author.id === cli.user?.id) return;
     Promise.all(plugins.map(async plugin => {
         if (plugin.onMessage)
             await plugin.onMessage(msg, cli);
@@ -56,6 +57,7 @@ cli.on('messageReactionAdd', async (reaction, user) => {
     if (reaction.partial) {
         await reaction.fetch();
     }
+    if (user.id === cli.user?.id) return;
     await Promise.all(plugins.map(async plugin => {
         if (plugin.onReactionAdded)
             plugin.onReactionAdded(reaction, user, cli);
@@ -66,6 +68,7 @@ cli.on('messageReactionRemove', async (reaction, user) => {
     if (reaction.partial) {
         await reaction.fetch();
     }
+    if (user.id === cli.user?.id) return;
     await Promise.all(plugins.map(async plugin => {
         if (plugin.onReactionRemoved)
             plugin.onReactionRemoved(reaction, user, cli);
