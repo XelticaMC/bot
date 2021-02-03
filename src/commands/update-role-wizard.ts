@@ -17,7 +17,6 @@ export default define('update-role-wizard', 'Update Role Wizard (for admin only)
 自分の能力を表すためにご活用ください。
 
 ${roles.map(r => ` ${r.emoji} ${r.name}: ${r.description}`).join('\n')}`);
-
-    roles.forEach(r => m.react(r.emoji));
+    roles.forEach(r => m.react(r.snowflake ?? r.emoji));
     return 'ok';
 }, true);

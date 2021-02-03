@@ -1,3 +1,8 @@
+/* コマンドプラグイン
+ * コマンドを処理するプラグインです
+ * コマンドは src/commands/index.ts に定義されています
+ */
+
 import { Client, Message } from "discord.js";
 import { getCommand } from "../commands";
 import { define } from "./Plugin";

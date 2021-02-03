@@ -1,6 +1,7 @@
 export type RoleDefinition = {
     name: string,
     description?: string,
+    snowflake?: string;
     emoji: string,
 };
 
@@ -56,5 +57,6 @@ export const roles: RoleDefinition[] = [{
 }, {
     name: 'XelticaMC鯖民',
     emoji: '<:xelticamc:806335114123804712>',
+    snowflake: '806335114123804712',
     description: 'XelticaMC鯖で遊んでます'
 }];
