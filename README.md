@@ -1,23 +1,39 @@
-# MaruyamaBot
+# CreeperBot
 
-![](https://img.shields.io/github/issues/xeltica/maruyamabot?style=flat-square) ![](https://img.shields.io/github/issues-pr/xeltica/maruyamabot?style=flat-square) ![](https://img.shields.io/github/license/xeltica/maruyamabot?style=flat-square) ![丸山あかね](https://img.shields.io/badge/%E4%B8%B8%E5%B1%B1-%E3%81%82%E3%81%8B%E3%81%AD-blueviolet?style=flat-square)
-
-身内鯖向けの bot です。ご参考までにどうぞ
+XelticaMC を対象とするコンシェルジュbot
 
 ## 動かし方
 
-.env を作って、次のものを書く
+まず example.env を .env にコピーする
+
+```shell
+cp example.env .env
+# お好きなエディターで編集する
+```
+
+それか、新しく作成する
 
 ```conf
-BOT_TOKEN=Discord Botのトークン
-SIRITORI_CHANNEL=しりとりチャンネルのID
+# BOT トークン
+BOT_TOKEN=your_bot_token
+# はじめに channel ID
+TOS_CHANNEL=
+# ロール　チャンネル ID
+ROLE_CHANNEL=
+# メンバーロール ID
+MEMBER_ROLE=
+# コマンドのプレフィックス
+COMMAND_PREFIX=!
+# 管理者のDiscord 内部ID。カンマ区切りで複数指定できる
+ADMINS=
 ```
 
-コマンドを叩く
-
-```
+```shell
+# インストール
 yarn install
+# ビルド
 yarn build
+# 起動
 yarn start
 ```
 
