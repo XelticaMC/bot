@@ -53,4 +53,8 @@ export const roles: RoleDefinition[] = [{
     name: '初心者',
     emoji: '👶',
     description: 'マイクラおしえてください'
+}, {
+    name: 'XelticaMC鯖民',
+    emoji: ':xelticamc:',
+    description: 'XelticaMC鯖で遊んでます'
 }];

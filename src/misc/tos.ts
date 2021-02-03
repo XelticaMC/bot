@@ -1,4 +1,5 @@
-export default `**XelticaMC へようこそ！**
+export default
+`**XelticaMC へようこそ！**
 
 はじめに、利用規約をお読み頂いた方のみ本サーバーをご利用いただけます
 
@@ -20,8 +21,11 @@ export default `**XelticaMC へようこそ！**
 
 ・本サーバーの利用対象者は、以下に該当するものとします
 　・正規版 Minecraft Java Edition を所有している
-　・正規版 Minecraft 統合版（iOS, Android, Windows 10, Nintendo Switch などのBedrock版）を所有している
+　・正規版 Minecraft 統合版（iOS, Android, Windows 10, Nintendo Switch）あるいはLegacy Console Editionを所有している
 　・上記のシリーズを所持してはいないが、購入を検討している
+
+・XelticaMC 公式マインクラフトサーバーをご利用頂く場合は、以下の利用規約にも同意する必要があります
+　https://craft.xeltica.work/docs/rule
 
 ・**免責事項**
 　・本サーバーでの行為によって起こった不利益・問題について、運営は一切の責任を負いかねます
@@ -30,6 +34,6 @@ export default `**XelticaMC へようこそ！**
 　・本利用規約は、事前の告知なしに変更ができるものとします
 　・規約変更後は、再度同意を行うまで本サービスをご利用頂けません
 
-以上の規約に同意する場合、:thumbsup:ボタンを押してください
+**以上の規約に同意する場合、:thumbsup:ボタンを押してください**
 
-同意できない場合は、ただちに本サーバーから退出してください`;
+**同意できない場合は、ただちに本サーバーから退出してください**`;
