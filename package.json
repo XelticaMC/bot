@@ -16,10 +16,12 @@
       "watch": "nodemon"
    },
    "dependencies": {
+      "@types/node-fetch": "^2.5.8",
       "dayjs": "^1.8.36",
       "discord.js": "^12.5.1",
       "dotenv": "^8.2.0",
       "linq": "^3.2.3",
+      "node-fetch": "^2.6.1",
       "rndstr": "^1.0.0"
    },
    "devDependencies": {
