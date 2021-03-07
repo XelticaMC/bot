@@ -1,5 +1,5 @@
 /*
- * MaruyamaBot ENTRY POINT
+ * CreeperBot ENTRY POINT
 */
 
 import { Client } from 'discord.js';
