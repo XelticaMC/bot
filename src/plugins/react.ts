@@ -4,9 +4,9 @@
  */
 
 import { Client, MessageReaction, PartialUser, User } from "discord.js";
-import { getRoleChannel, getTosChannel } from "../misc/env";
+import { getRoleChannel, getTosChannel, getTosMcserverChannel } from "../misc/env";
 import { getRole } from "../misc/getRole";
-import { memberRole, roles } from "../misc/roles";
+import { citizenRole, memberRole, roles } from "../misc/roles";
 import { define } from "./Plugin";
 
 export default define({
@@ -27,6 +27,23 @@ export default define({
                 member?.roles.add(role)
                     .then((m) => console.info(`Added ${m.displayName} as a member.`))
                     .catch((e) => console.error(`Failed to make ${member.displayName} as a member because of ${e.name ?? 'Error'}: ${e.message ?? 'unknown'}.`));
+            }
+        }
+
+        if (reaction.message.channel.id === getTosMcserverChannel() && user.id !== cli.user?.id) {
+            if (reaction.emoji.toString() === '👍') {
+                // サーバーでなければ無視
+                if (!reaction.message.guild) return;
+
+                const role = await getRole(reaction.message.guild, citizenRole);
+                if (!role) {
+                    console.warn('The citizen role doesn\'t exist on your server!');
+                    return;
+                }
+                const member = await reaction.message.guild?.members.fetch(user as User);
+                member?.roles.add(role)
+                    .then((m) => console.info(`Made ${m.displayName} as a citizen.`))
+                    .catch((e) => console.error(`Failed to make ${member.displayName} as a citizen because of ${e.name ?? 'Error'}: ${e.message ?? 'unknown'}.`));
             }
         }
 

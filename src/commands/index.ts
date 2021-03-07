@@ -9,6 +9,7 @@ import ping from "./ping";
 import seed from "./seed";
 import updateRoleWizard from "./update-role-wizard";
 import updateTos from "./update-tos";
+import updateTosMcserver from "./update-tos-mcserver";
 import whoami from "./whoami";
 
 const commands: readonly MBCommandDefinition[] = [
@@ -23,6 +24,7 @@ const commands: readonly MBCommandDefinition[] = [
     updateTos,
     updateRoleWizard,
     seed,
+    updateTosMcserver,
 ];
 
 export const getCommand = (name: string) => commands.find(c => c.name === name);

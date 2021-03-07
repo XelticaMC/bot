@@ -10,6 +10,11 @@ export const memberRole: RoleDefinition = {
     emoji: '',
 };
 
+export const citizenRole: RoleDefinition = {
+    name: '市民',
+    emoji: '',
+};
+
 export const roles: RoleDefinition[] = [{
     name: 'Java版プレイヤー',
     emoji: '☕',
@@ -25,7 +30,7 @@ export const roles: RoleDefinition[] = [{
 }, {
     name: '建築士',
     emoji: '🏠',
-    description: 'クリエティブガチ勢'
+    description: 'クリエイティブガチ勢'
 }, {
     name: 'PvPer',
     emoji: '⚔️',
@@ -55,8 +60,7 @@ export const roles: RoleDefinition[] = [{
     emoji: '👶',
     description: 'マイクラおしえてください'
 }, {
-    name: 'XelticaMC鯖民',
-    emoji: '<:xelticamc:806335114123804712>',
-    snowflake: '806335114123804712',
-    description: 'XelticaMC鯖で遊んでます'
-}];
+    name: '実況者',
+    emoji: '📺',
+    description: 'マイクラ実況者やってます'
+}, ];
