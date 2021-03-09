@@ -3,8 +3,8 @@ import { getRoleChannel, getTosMcserverChannel } from "../misc/env";
 import { fetchAllMessages } from "../misc/fetchAllMessages";
 import { getRole } from "../misc/getRole";
 import { isAdmin } from "../misc/isAdmin";
-import { memberRole } from "../misc/roles";
-import tos from "../misc/tos";
+import { citizenRole, memberRole } from "../misc/roles";
+import tosMcserver from "../misc/tosMcserver";
 import { define } from "./define";
 
 export default define('update-tos-mcserver', 'Update TOS of Minectaft Server (for admin only)', async (_args: string[], msg: Message, cli: Client) => {
@@ -15,9 +15,9 @@ export default define('update-tos-mcserver', 'Update TOS of Minectaft Server (fo
     const ch = await cli.channels.fetch(chid);
     if (!(ch instanceof TextChannel)) return 'err';
     await Promise.all((await fetchAllMessages(ch)).map(mes => mes.delete()));
-    const m = await ch.send(tos);
+    const m = await ch.send(tosMcserver);
     m.react('👍');
-    const role = await getRole(msg.guild, memberRole);
+    const role = await getRole(msg.guild, citizenRole);
     role?.members.map(m => m.roles.remove(role));
     return 'ok';
 }, true);
