@@ -3,15 +3,11 @@
 */
 
 import { Client } from 'discord.js';
+
 import { plugins } from './plugins';
 import workers from './workers';
-import dotenv from 'dotenv';
 import { getAdmins, getBotToken, getTosChannel } from './misc/env';
-
-import meta from '../package.json';
 import commands from './commands';
-
-dotenv.config();
 
 if (!getBotToken()) {
     console.error('BOT_TOKEN が未定義です。.env ファイルに記載してください');
@@ -28,8 +24,8 @@ if (!getTosChannel()) {
     process.exit(-1);
 }
 
-console.log(`Creeper Bot v${meta.version}`);
-console.log("起動中...");
+console.log(`Creeper Bot`);
+console.log("ｼｭｰｰｰ...");
 console.log(`loaded ${plugins.length} message handlers`);
 console.log(`loaded ${commands.length} commands`);
 console.log(`loaded ${workers.length} workers`);
