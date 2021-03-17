@@ -1,5 +1,5 @@
 import channel from "./channel";
-import { MBCommandDefinition } from "./define";
+import { CBCommandDefinition } from "./define";
 import echo from "./echo";
 import help from "./help";
 import isAdmin from "./is-admin";
@@ -12,7 +12,7 @@ import updateTos from "./update-tos";
 import updateTosMcserver from "./update-tos-mcserver";
 import whoami from "./whoami";
 
-const commands: readonly MBCommandDefinition[] = [
+const commands: readonly CBCommandDefinition[] = [
     ping,
     help,
     echo,
