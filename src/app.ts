@@ -26,7 +26,7 @@ if (!getTosChannel()) {
 
 console.log(`Creeper Bot`);
 console.log("ｼｭｰｰｰ...");
-console.log(`loaded ${plugins.length} message handlers`);
+console.log(`loaded ${plugins.length} plugins`);
 console.log(`loaded ${commands.length} commands`);
 console.log(`loaded ${workers.length} workers`);
 
