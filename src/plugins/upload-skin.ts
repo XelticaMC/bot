@@ -30,7 +30,11 @@ export default define({
             }
 
             if (width !== 64 || ![32, 64].includes(height)) {
-                msg.reply(`サイズが非対応のようです。\nマイクラは64x64, 64x32の画像のみスキンとして使えます。この画像のサイズは${width}x${height}みたいです。`);
+                let message = `本サーバーで使用できるスキン画像は64x64, 64x32のみです。`;
+                if (width === 128 && height === 128) {
+                    message = '統合版サーバーではないため、128サイズのテクスチャ―は使用できません。';
+                }
+                msg.reply(`画像サイズ（${width}x${height}）は適切ではありません。\n${message}`);
                 return;
             }
 
