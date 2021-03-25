@@ -17,8 +17,13 @@ export default define('help', '', (args: string[], _msg: Message, _client: Clien
     const [arg] = args;
     if (arg === 'me') {
         return helpMeReply[Math.floor(Math.random() * helpMeReply.length)];
+    } else if (arg) {
+        const c = commands.find(c => c.name === arg && !c.hidden);
+        return !c ? 'コマンドが見つかりませんでした。' : `**コマンド名: ${c.name}**
+${c?.description}`;
+    } else {
+        const prefix = getCommandPrefix();
+        const a = commands.filter(c => !c.hidden).map(c => `${prefix}${c.name}: ${c.description}`).join('\n');
+        return a;
     }
-    const prefix = getCommandPrefix();
-    const a = commands.filter(c => !c.hidden).map(c => `${prefix}${c.name}: ${c.description}`).join('\n');
-    return a;
 });
