@@ -13,6 +13,7 @@ import updateRoleWizard from "./update-role-wizard";
 import updateTos from "./update-tos";
 import updateTosMcserver from "./update-tos-mcserver";
 import whoami from "./whoami";
+import chunithm from "./chunithm";
 
 const commands: readonly CBCommandDefinition[] = [
     ping,
@@ -29,6 +30,7 @@ const commands: readonly CBCommandDefinition[] = [
     updateTosMcserver,
     players,
     tps,
+    chunithm,
 ];
 
 export const getCommand = (name: string) => commands.find(c => c.name === name);
