@@ -18,11 +18,19 @@ export default define({
             if (!name) return;
 
             const cmd = getCommand(name);
-            if (!cmd) return;
+            if (!cmd) {
+                console.warn(`${name} というコマンドは登録されていません。無視します。`);
+                return;
+            };
 
-            const result = cmd.command(args, msg, cli);
-            const content = typeof result === 'string' ? result : await result;
-            ch.send({ content });
+            try {
+                const result = cmd.command(args, msg, cli);
+                const content = typeof result === 'string' ? result : await result;
+                ch.send({ content });
+            } catch (e) {
+                console.error(e);
+                ch.send({ content: 'エラー'});
+            }
         }
     },
 });
