@@ -14,6 +14,7 @@ import updateTos from "./update-tos";
 import updateTosMcserver from "./update-tos-mcserver";
 import whoami from "./whoami";
 import chunithm from "./chunithm";
+import updateClubWizard from "./update-club-wizard";
 
 const commands: readonly CBCommandDefinition[] = [
     ping,
@@ -26,6 +27,7 @@ const commands: readonly CBCommandDefinition[] = [
     lastMessageOf,
     updateTos,
     updateRoleWizard,
+    updateClubWizard,
     seed,
     updateTosMcserver,
     players,
