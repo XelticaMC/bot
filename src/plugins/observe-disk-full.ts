@@ -9,8 +9,16 @@ import { define } from "./Plugin";
 const textToDetect = 'デバイスに空き領域がありません';
 const alertMessage = '<@!569815048436973588> ディスクパンパンやぞ起きろアホ';
 
+let locked: NodeJS.Timer | null = null;
+
+const lock = () => {
+    if (locked) return;
+    locked = setTimeout(() => locked = null, 5 * 60 * 1000);
+};
+
 export default define({
     onMessage: async (msg: Message, cli: Client) => {
+        if (locked) return;
         const gameChatId = getGameChatChannel();
         if (!gameChatId) return;
 
@@ -19,6 +27,7 @@ export default define({
             if (!(ch instanceof TextChannel)) return;
 
             const m = await ch.send(alertMessage);
+            lock();
         }
     },
 });
