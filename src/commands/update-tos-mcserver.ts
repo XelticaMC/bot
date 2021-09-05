@@ -17,7 +17,8 @@ export default define('update-tos-mcserver', 'Update TOS of Minectaft Server (fo
     await Promise.all((await fetchAllMessages(ch)).map(mes => mes.delete()));
     const m = await ch.send(tosMcserver);
     m.react('👍');
-    const role = await getRole(msg.guild, citizenRole);
-    role?.members.map(m => m.roles.remove(role));
+    // バカ重いので廃止
+    // const role = await getRole(msg.guild, citizenRole);
+    // role?.members.map(m => m.roles.remove(role));
     return 'ok';
 }, true);
