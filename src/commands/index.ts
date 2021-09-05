@@ -17,6 +17,7 @@ import chunithm from "./chunithm";
 import updateClubWizard from "./update-club-wizard";
 import y from "./y";
 import n from "./n";
+import dice from "./dice";
 
 const commands: readonly CBCommandDefinition[] = [
     ping,
@@ -37,6 +38,7 @@ const commands: readonly CBCommandDefinition[] = [
     chunithm,
     y,
     n,
+    dice,
 ];
 
 export const getCommand = (name: string) => commands.find(c => c.name === name);
