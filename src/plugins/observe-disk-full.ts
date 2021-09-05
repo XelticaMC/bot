@@ -7,7 +7,7 @@ import { getConsoleChannel, getGameChatChannel } from "../misc/env";
 import { define } from "./Plugin";
 
 const textToDetect = 'デバイスに空き領域がありません';
-const alertMessage = '<@!569815048436973588> ディスクパンパンやぞ起きろアホ';
+const alertMessage = '<@!569815048436973588> 容量不足のエラーが出てます！早急に確認してください';
 
 let locked: NodeJS.Timer | null = null;
 
