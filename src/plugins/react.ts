@@ -34,7 +34,7 @@ export default define({
                 }
 
                 const member = await reaction.message.guild?.members.fetch(user as User);
-                if (!member?.roles.cache.some(r => r.id === role.id)) {
+                if (member?.roles.cache.some(r => r.id === role.id)) {
                     // ロールが既に付与済みであれば無視
                     console.info(`The member ${member.displayName} tried to get the Crafter role, but already have it. Ignored.`);
                     return;
