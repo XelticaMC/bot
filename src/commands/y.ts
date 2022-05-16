@@ -1,5 +1,3 @@
 import { define } from "./define";
 
-export default define('y', 'はい', async () => {
-    return 'はい';
-});
+export default define('y', 'はい', async () => 'はい');

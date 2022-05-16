@@ -1,6 +1,6 @@
-import { Client, Message } from "discord.js";
+import { Client, GuildMember } from "discord.js";
 
-export type CBCommand = (args: string[], message: Message, client: Client) => string | Promise<string>;
+export type CBCommand = (args: string[], user: GuildMember | null, client: Client) => string | Promise<string>;
 
 export type CBCommandDefinition = { readonly name: string, readonly description: string, readonly command: CBCommand, hidden: boolean };
 

@@ -1,9 +1,9 @@
-import { Client, DiscordAPIError, Message, TextChannel } from "discord.js";
+import { Client, DiscordAPIError, GuildMember, TextChannel } from "discord.js";
 import { define } from "./define";
 import { extractChannels } from "../misc/extract";
 import { fetchLastMessage } from "../misc/fetchLastMessage";
 
-export default define('last-message-of', '', async (args: string[], _msg: Message, cli: Client) => {
+export default define('last-message-of', '', async (args: string[], member: GuildMember | null, cli: Client) => {
     if (args.length !== 1) {
         return '/channel <channel>';
     }

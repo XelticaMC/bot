@@ -31,7 +31,7 @@ export default define({
             };
 
             try {
-                const result = cmd.command(args, msg, cli);
+                const result = cmd.command(args, msg.member, cli);
                 const content = typeof result === 'string' ? result : await result;
                 ch.send({ content });
             } catch (e) {

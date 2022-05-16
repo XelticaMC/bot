@@ -2,7 +2,7 @@
  * XelticaMC Bot ENTRY POINT
 */
 
-import { Client, Intents, IntentsString } from 'discord.js';
+import { ApplicationCommandDataResolvable, Client, GuildMember, Intents, IntentsString } from 'discord.js';
 
 import { plugins } from './plugins';
 import { getAdmins, getBotToken, getTosChannel } from './misc/env';
@@ -41,6 +41,16 @@ cli.on('ready', async () => {
     for (const id of getAdmins()) {
         console.log(' ' + id);
     }
+
+    // スラッシュコマンド登録
+    const slashCommands = commands.map(c => ({
+        name: c.name,
+        description: c.description || '説明なし',
+        defaultPermission: !c.hidden,
+        type: 'CHAT_INPUT',
+    } as ApplicationCommandDataResolvable));
+
+    await cli.application?.commands.set(slashCommands, '759661786105905152');
 });
 
 cli.on('messageCreate', msg => {
@@ -71,6 +81,22 @@ cli.on('messageReactionRemove', async (reaction, user) => {
         if (plugin.onReactionRemoved)
             plugin.onReactionRemoved(reaction, user, cli);
     }));
+});
+
+// スラッシュコマンドの処理
+cli.on('interactionCreate', async interaction => {
+    if (!interaction.isCommand()) return;
+
+    const command = commands.find(command => command.name === interaction.commandName);
+    if (!command) {
+        interaction.reply(`${interaction.commandName} というコマンドはありません…。`);
+        return;
+    }
+    await interaction.deferReply();
+    const member = !interaction.member ? null : 'bannable' in interaction.member ? interaction.member : null;
+    const res = command.command([], member, cli);
+    const res2 = typeof res === 'string' ? res : await res;
+    await interaction.editReply(res2);
 });
 
 cli.login(getBotToken());

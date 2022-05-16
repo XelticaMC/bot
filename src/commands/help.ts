@@ -1,4 +1,3 @@
-import { Client, Message } from "discord.js";
 import { define } from "./define";
 import commands from ".";
 import { getCommandPrefix } from "../misc/env";
@@ -13,7 +12,7 @@ const helpMeReply = [
     'リフォームしますか？',
 ];
 
-export default define('help', '', (args: string[], _msg: Message, _client: Client) => {
+export default define('help', '', (args: string[]) => {
     const [arg] = args;
     if (arg === 'me') {
         return helpMeReply[Math.floor(Math.random() * helpMeReply.length)];
