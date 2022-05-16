@@ -3,7 +3,7 @@ import { getCommandPrefix } from "../misc/env";
 import { extractChannels } from "../misc/extract";
 import { define } from "./define";
 
-export default define('channel', '指定したチャンネルを情報を取得します。', async (args: string[], msg: Message, cli: Client) => {
+export default define('channel', '指定したチャンネルの詳細情報を取得します。', async (args: string[], msg: Message, cli: Client) => {
     if (args.length !== 1) {
         return getCommandPrefix() + 'channel <channel>';
     }

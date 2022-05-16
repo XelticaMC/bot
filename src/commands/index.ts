@@ -9,12 +9,8 @@ import ping from "./ping";
 import players from "./players";
 import seed from "./seed";
 import tps from "./tps";
-import updateRoleWizard from "./update-role-wizard";
 import updateTos from "./update-tos";
-import updateTosMcserver from "./update-tos-mcserver";
 import whoami from "./whoami";
-import chunithm from "./chunithm";
-import updateClubWizard from "./update-club-wizard";
 import y from "./y";
 import n from "./n";
 import dice from "./dice";
@@ -29,13 +25,9 @@ const commands: readonly CBCommandDefinition[] = [
     channel,
     lastMessageOf,
     updateTos,
-    updateRoleWizard,
-    updateClubWizard,
     seed,
-    updateTosMcserver,
     players,
     tps,
-    chunithm,
     y,
     n,
     dice,

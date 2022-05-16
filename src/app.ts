@@ -5,7 +5,6 @@
 import { Client } from 'discord.js';
 
 import { plugins } from './plugins';
-import workers from './workers';
 import { getAdmins, getBotToken, getTosChannel } from './misc/env';
 import commands from './commands';
 
@@ -24,11 +23,10 @@ if (!getTosChannel()) {
     process.exit(-1);
 }
 
-console.log(`Creeper Bot`);
+console.log(`XelticaMC Bot`);
 console.log("ｼｭｰｰｰ...");
 console.log(`loaded ${plugins.length} plugins`);
 console.log(`loaded ${commands.length} commands`);
-console.log(`loaded ${workers.length} workers`);
 
 const cli = new Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
 
@@ -70,9 +68,5 @@ cli.on('messageReactionRemove', async (reaction, user) => {
             plugin.onReactionRemoved(reaction, user, cli);
     }));
 });
-
-setInterval(() => {
-    workers.forEach(worker => worker(cli));
-}, 1000);
 
 cli.login(getBotToken());

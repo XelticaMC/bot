@@ -17,8 +17,5 @@ export default define('update-tos', 'Update TOS (for admin only)', async (_args:
     await Promise.all((await fetchAllMessages(ch)).map(mes => mes.delete()));
     const m = await ch.send(tos);
     m.react('👍');
-    // バカ重いので廃止
-    // const role = await getRole(msg.guild, memberRole);
-    // role?.members.map(m => m.roles.remove(role));
     return 'ok';
 }, true);

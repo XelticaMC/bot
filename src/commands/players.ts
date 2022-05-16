@@ -1,6 +1,5 @@
 import { Client, Message } from "discord.js";
 import { define } from "./define";
-import { isAdmin } from "../misc/isAdmin";
 import fetch from 'node-fetch';
 
 type Player = {
@@ -17,5 +16,3 @@ export default define('players', 'XelticaMCの参加プレイヤー一覧を返�
         return '取得失敗';
     }
 });
-
-
