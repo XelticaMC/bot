@@ -2,7 +2,7 @@
  * リアクションを処理するプラグインです
  */
 
-import { Client, MessageReaction, PartialUser, User } from "discord.js";
+import { Client, MessageReaction, PartialMessageReaction, PartialUser, User } from "discord.js";
 import { getNotificationNewComerChannel, getTosChannel, getTosMcserverChannel } from "../misc/env";
 import { getRole } from "../misc/getRole";
 import { citizenRole, memberRole } from "../misc/roles";
@@ -16,7 +16,7 @@ const welcomes = [
 ];
 
 export default define({
-    async onReactionAdded(reaction: MessageReaction, user: User | PartialUser, cli: Client) {
+    async onReactionAdded(reaction: MessageReaction | PartialMessageReaction, user: User | PartialUser, cli: Client) {
         // 規約への同意
         if (reaction.message.channel.id === getTosChannel() && user.id !== cli.user?.id) {
             if (reaction.emoji.toString() === '👍') {
@@ -44,7 +44,7 @@ export default define({
                         const notificationChannel = getNotificationNewComerChannel();
                         if (!notificationChannel) return;
                         const ch = await cli.channels.fetch(notificationChannel);
-                        if (!ch.isText()) return;
+                        if (!ch || !ch.isText()) return;
                         const mention = `<@${member.user.id}>`;
                         await ch.send(welcomes[Math.floor(Math.random() * welcomes.length)].replace(/%s/g, mention));
                         console.info(`Make ${m.displayName} a member.`);

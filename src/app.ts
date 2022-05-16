@@ -2,7 +2,7 @@
  * XelticaMC Bot ENTRY POINT
 */
 
-import { Client } from 'discord.js';
+import { Client, Intents, IntentsString } from 'discord.js';
 
 import { plugins } from './plugins';
 import { getAdmins, getBotToken, getTosChannel } from './misc/env';
@@ -28,7 +28,11 @@ console.log("ｼｭｰｰｰ...");
 console.log(`loaded ${plugins.length} plugins`);
 console.log(`loaded ${commands.length} commands`);
 
-const cli = new Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
+const cli = new Client({
+    partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
+    // TODO: パフォーマンス向上のため、インテントを厳選する
+    intents: Object.keys(Intents.FLAGS) as IntentsString[],
+});
 
 cli.on('ready', async () => {
     console.log(`${cli.user?.username ?? 'NULL'} というアカウントでログインしました。`);
@@ -39,7 +43,7 @@ cli.on('ready', async () => {
     }
 });
 
-cli.on('message', msg => {
+cli.on('messageCreate', msg => {
     if (msg.author.id === cli.user?.id) return;
     Promise.all(plugins.map(async plugin => {
         if (plugin.onMessage)

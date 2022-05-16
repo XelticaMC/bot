@@ -12,9 +12,10 @@ export async function fetchAllMessages(ch: TextChannel) {
 
     // 過去ログ
     do {
-        temp = (await ch.messages.fetch({ limit: 100, before: id ?? undefined }))
+        temp = [...((await ch.messages.fetch({ limit: 100, before: id ?? undefined }))
             .filter(mes => mes.type === 'DEFAULT' && !!mes.content && !mes.pinned)
-            .array();
+            .values())];
+
         res.push(...temp);
         if (temp.length > 0)
             id = temp[temp.length - 1].id;
