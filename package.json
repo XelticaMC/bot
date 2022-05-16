@@ -1,6 +1,6 @@
 {
-   "name": "creeper-bot",
-   "version": "1.0.0",
+   "name": "xelticamc-bot",
+   "version": "3.0.0",
    "description": "A bot for Xeltica Minecraft Club server",
    "main": "built/src/app.js",
    "author": "Xeltica <xeltica@gmail.com>",
@@ -17,16 +17,10 @@
    },
    "dependencies": {
       "@types/node-fetch": "^2.5.8",
-      "@types/probe-image-size": "^7.0.1",
-      "@types/uuid": "^8.3.1",
-      "dayjs": "^1.8.36",
       "discord.js": "^12.5.1",
       "dotenv": "^8.2.0",
-      "linq": "^3.2.3",
       "node-fetch": "^2.6.1",
-      "probe-image-size": "^7.2.1",
-      "rndstr": "^1.0.0",
-      "uuid": "^8.3.2"
+      "rndstr": "^1.0.0"
    },
    "devDependencies": {
       "@types/node": "^8.0.29",

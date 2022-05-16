@@ -1,6 +1,6 @@
-# CreeperBot
+# XelticaMC BOT
 
-XelticaMC を対象とするコンシェルジュbot
+XelticaMC Discord専用の汎用BOT
 
 ## 動かし方
 

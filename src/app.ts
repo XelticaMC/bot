@@ -1,5 +1,5 @@
 /*
- * CreeperBot ENTRY POINT
+ * XelticaMC Bot ENTRY POINT
 */
 
 import { Client } from 'discord.js';
