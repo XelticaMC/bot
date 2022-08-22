@@ -1,0 +1,27 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// 自治体
+model Municipality {
+  // ID
+  id Int @id @default(autoincrement())
+  // 自治体名
+  name String
+  // 自治体を表す絵文字
+  emoji String
+  // Discord チャンネルID
+  discord_channel_id String
+  // Discord ロールID
+  discord_role_id String
+}
+
+

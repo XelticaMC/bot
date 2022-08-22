@@ -2,11 +2,11 @@
  * XelticaMC Bot ENTRY POINT
 */
 
-import { ApplicationCommandDataResolvable, Client, GuildMember, Intents, IntentsString } from 'discord.js';
+import { ApplicationCommandDataResolvable, Client, Intents, IntentsString } from 'discord.js';
 
 import { plugins } from './plugins';
-import { getAdmins, getBotToken, getTosChannel } from './misc/env';
-import commands from './commands';
+import { getBotToken, getTosChannel } from './misc/env';
+import commands from './commands/v2';
 
 if (!getBotToken()) {
     console.error('BOT_TOKEN が未定義です。.env ファイルに記載してください');
@@ -24,7 +24,6 @@ if (!getTosChannel()) {
 }
 
 console.log(`XelticaMC Bot`);
-console.log("ｼｭｰｰｰ...");
 console.log(`loaded ${plugins.length} plugins`);
 console.log(`loaded ${commands.length} commands`);
 
@@ -35,22 +34,24 @@ const cli = new Client({
 });
 
 cli.on('ready', async () => {
-    console.log(`${cli.user?.username ?? 'NULL'} というアカウントでログインしました。`);
-
-    console.log('admin Id: ');
-    for (const id of getAdmins()) {
-        console.log(' ' + id);
+    const app = cli.application;
+    if (!app) {
+        console.error('App not found');
+        process.exit(1);
     }
+
+    console.log(`${cli.user?.username ?? 'NULL'} というアカウントでログインしました。`);
 
     // スラッシュコマンド登録
     const slashCommands = commands.map(c => ({
         name: c.name,
         description: c.description || '説明なし',
-        defaultPermission: !c.hidden,
+        defaultPermission: !c.isStaffCommand,
+        options: c.options,
         type: 'CHAT_INPUT',
     } as ApplicationCommandDataResolvable));
 
-    await cli.application?.commands.set(slashCommands, '759661786105905152');
+    await app.commands.set(slashCommands, '759661786105905152');
 });
 
 cli.on('messageCreate', msg => {
@@ -94,9 +95,35 @@ cli.on('interactionCreate', async interaction => {
     }
     await interaction.deferReply();
     const member = !interaction.member ? null : 'bannable' in interaction.member ? interaction.member : null;
-    const res = command.command([], member, cli);
-    const res2 = typeof res === 'string' ? res : await res;
-    await interaction.editReply(res2);
+    const res = command.run({
+        discord: cli,
+        command: interaction,
+        member,
+        async reply(text) {
+            await interaction.editReply(text);
+        },
+        async error(text) {
+            await interaction.editReply({
+                embeds: [
+                    {
+                        color: 'RED',
+                        title: '😭 エラーです…',
+                        description: text,
+                    }
+                ]
+            });
+        },
+    });
+
+    // Promiseなら待機する
+    if (typeof res === 'object') {
+        await res;
+    }
+});
+
+// ボタンの処理
+cli.on('interactionCreate', async interaction => {
+    
 });
 
 cli.login(getBotToken());

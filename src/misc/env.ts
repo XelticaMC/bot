@@ -11,5 +11,4 @@ export const getGameChatChannel = () => process.env.GAME_CHAT_CHANNEL;
 export const getConsoleChannel = () => process.env.CONSOLE_CHANNEL;
 export const getNotificationNewComerChannel = () => process.env.NOTIFICATION_NEWCOMER_CHANNEL;
 export const getCommandPrefix = () => process.env.COMMAND_PREFIX ?? '!';
-export const getAdmins = () => (process.env.ADMINS ?? '').split(',');
 export const getSkinDestination = () => process.env.SKIN_DEST;

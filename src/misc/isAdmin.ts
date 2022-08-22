@@ -1,6 +1,7 @@
 import { Guild } from "discord.js";
-import { getAdmins } from "./env";
 
-export function isAdmin(userId: string, guild = null as Guild | null | undefined) {
-    return [guild?.ownerId, ...getAdmins()].includes(userId);
+export function isAdmin(userId: string, guild: Guild | null | undefined = null) {
+    if (!guild) return false;
+    const members = Array.from(guild.roles.cache.get('総務グループ')?.members.values() ?? []);
+    return [guild.ownerId, ...members.map(m => m.id)].includes(userId);
 }
