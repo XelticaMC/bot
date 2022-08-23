@@ -18,10 +18,24 @@ model Municipality {
   name String
   // 自治体を表す絵文字
   emoji String
-  // Discord チャンネルID
-  discord_channel_id String
-  // Discord ロールID
-  discord_role_id String
 }
 
+// 雑多データ
+model MiscData {
+  // ID
+  id Int @id @default(autoincrement())
+  // Disboard Bump最終日時
+  bump_at DateTime
+  // Dissoku Up最終日時
+  up_at DateTime
+}
 
+// 固定メッセージ
+model FixedMessage {
+  // ID
+  id Int @id @default(autoincrement())
+  // チャンネルID
+  discord_channel_id String
+  // 本文
+  message String
+}

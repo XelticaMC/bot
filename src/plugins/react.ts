@@ -5,15 +5,9 @@
 import { Client, MessageReaction, PartialMessageReaction, PartialUser, User } from "discord.js";
 import { getNotificationNewComerChannel, getTosChannel, getTosMcserverChannel } from "../misc/env";
 import { getRole } from "../misc/getRole";
-import { citizenRole, memberRole } from "../misc/roles";
+import { memberRole } from "../misc/roles";
+import { welcomes } from "../misc/welcomes";
 import { define } from "./Plugin";
-
-const welcomes = [
-    '%s さんが初参加です！ようこそXelticaMCへ！',
-    '%s さん、ようこそXelticaMCへ！みんな〜新規さんですよ！',
-    '%s さんが新たにいらっしゃいました！',
-    'XelticaMCに新たな風が吹きました。ようこそ、 %s さん！',
-];
 
 export default define({
     async onReactionAdded(reaction: MessageReaction | PartialMessageReaction, user: User | PartialUser, cli: Client) {

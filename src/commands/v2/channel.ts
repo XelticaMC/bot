@@ -4,6 +4,7 @@ import { Command } from "./types/Command";
 export const channel: Command = {
     name: 'channel',
     description: '指定したチャンネルの詳細情報を取得します。',
+    isEphemeral: true,
     options: [
         {
             type: 'CHANNEL',
