@@ -1,6 +1,7 @@
 import { CommandInteraction } from 'discord.js';
 import commands from '../commands/v2';
 import { cli } from '../app';
+import { replyError } from './replyError';
 
 export async function handleCommand(it: CommandInteraction) {
     const command = commands.find(command => command.name === it.commandName);
@@ -20,15 +21,7 @@ export async function handleCommand(it: CommandInteraction) {
             await it.editReply(text);
         },
         async error(text) {
-            await it.editReply({
-                embeds: [
-                    {
-                        color: 'RED',
-                        title: '😭 エラーです…',
-                        description: text,
-                    }
-                ],
-            });
+            await replyError(it, text);
         },
     });
 

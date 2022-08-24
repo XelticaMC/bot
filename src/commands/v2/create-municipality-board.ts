@@ -34,7 +34,7 @@ export const createMunicipalityBoard: Command = {
         await channel.send({
             embeds: [{
                 title: '自治体ロールボード',
-                description: '自治体チャンネルに参加するためには、同じ名前のロールを持つ必要があります。\nボタンを押して、必要なロールを手に入れましょう。\n\n工事中なのでまだ使えません。',
+                description: '自治体チャンネルに参加するためには、同じ名前のロールを持つ必要があります。\nボタンを押して、必要なロールを手に入れましょう。',
             }],
             components: [link, actions],
         });
